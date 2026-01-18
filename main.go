@@ -25,7 +25,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	// routes
-	mux.HandleFunc("/", home)
+	mux.HandleFunc("/{$}", home)
 	mux.HandleFunc("/snippet/view", snippetView)
 	mux.HandleFunc("/snippet/create", snippetCreate)
 
