@@ -37,9 +37,9 @@ func main() {
 	mux := http.NewServeMux()
 
 	// routes
-	mux.HandleFunc("/{$}", home)
-	mux.HandleFunc("/snippet/view/{id}", snippetView)
-	mux.HandleFunc("/snippet/create", snippetCreate)
+	mux.HandleFunc("GET /{$}", home)
+	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
+	mux.HandleFunc("GET /snippet/create", snippetCreate)
 
 	// Use the http.ListenAndServe() function to start a new web server. We pass
 	// two parameters: the TCP network address to listen on (in this case ":4000
