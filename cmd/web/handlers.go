@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -36,24 +35,4 @@ func snippetCreate(w http.ResponseWriter, r *http.Request) {
 func snippetCreatePost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	w.Write([]byte("Save a new snippet"))
-}
-
-func main() {
-	// Use the http.NewServeMux() function to initialize a new servemux, then
-	// register the home function as the handler for the "/" URL pattern.
-	mux := http.NewServeMux()
-
-	// routes
-	mux.HandleFunc("GET /{$}", home)
-	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
-	mux.HandleFunc("GET /snippet/create", snippetCreate)
-	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
-
-	// Use the http.ListenAndServe() function to start a new web server. We pass
-	// two parameters: the TCP network address to listen on (in this case ":4000
-	// and the servemux we just created. If http.ListenAndServe() returns an er
-	// we use the log.Fatal() function to log the error message and exit.
-	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
 }
