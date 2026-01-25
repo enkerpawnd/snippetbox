@@ -10,6 +10,9 @@ import (
 // Define a home handler function which writes a byte slice containing
 // "Hello from Snippetbox" as the response body.
 func home(w http.ResponseWriter, r *http.Request) {
+	// Can be used add a custom header, where first arg
+	// is header name, second arg is header value
+	w.Header().Add("Server", "Go") // must be called before a writeHeader
 	w.Write([]byte("Hello from Snippetbox"))
 }
 
@@ -23,8 +26,7 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	msg := fmt.Sprintf("Display a specific snippet with ID %d...", id)
-	w.Write([]byte(msg))
+	fmt.Fprintf(w, "Display a specific snippet with ID %d...", id)
 }
 
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
